@@ -20,7 +20,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MainApp() { BriefScreen() }
+            MainApp() {
+                BriefScreen(
+                    briefs = emptyList(),
+                    onAddBrief = { },
+                    onRemoveBrief = { })
+            }
         }
     }
 }
@@ -40,6 +45,11 @@ fun MainApp(content: @Composable () -> Unit) {
 @Composable
 fun GreetingPreview() {
     BrieflyTheme {
-        MainApp() { BriefScreen() }
+        MainApp() {
+            BriefScreen(
+                briefs = emptyList(),
+                onAddBrief = { },
+                onRemoveBrief = { })
+        }
     }
 }

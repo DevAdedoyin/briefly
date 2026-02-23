@@ -19,10 +19,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.pauversildo.briefly.components.BrieflyInputTextField
 import com.pauversildo.briefly.components.BrieflySubmitButton
+import com.pauversildo.briefly.model.Brief
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BriefScreen() {
+fun BriefScreen(briefs: List<Brief>, onAddBrief: (Brief) -> Unit, onRemoveBrief: (Brief) -> Unit) {
     var title by remember {
         mutableStateOf("")
     }
@@ -45,7 +46,7 @@ fun BriefScreen() {
             BrieflyInputTextField(
                 modifier = Modifier.padding(top = 9.dp, bottom = 8.dp),
                 text = title,
-                label = title,
+                label = "Title",
                 maxLine = 1,
                 onTextChange = {
                     if (it.all { char ->
@@ -66,7 +67,12 @@ fun BriefScreen() {
                         description = it
                 },
                 onImeAction = {})
-            BrieflySubmitButton(text = "Save", onClick = {})
+            BrieflySubmitButton(text = "Save", onClick = {
+                if (title.isNotEmpty() && description.isNotEmpty()) {
+                    title = ""
+                    description = ""
+                }
+            })
         }
     }
 }
@@ -74,5 +80,9 @@ fun BriefScreen() {
 @Preview(showBackground = true)
 @Composable
 fun BriefScreenPreview() {
-    BriefScreen()
+    BriefScreen(
+        briefs = emptyList(),
+        onAddBrief = { },
+        onRemoveBrief = { }
+    )
 }
