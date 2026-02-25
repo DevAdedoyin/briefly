@@ -23,8 +23,10 @@ import com.pauversildo.briefly.model.Brief
 import com.pauversildo.briefly.screen.BriefScreen
 import com.pauversildo.briefly.screen.BriefViewModel
 import com.pauversildo.briefly.ui.theme.BrieflyTheme
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.getValue
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
